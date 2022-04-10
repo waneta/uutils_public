@@ -34,6 +34,15 @@ namespace Client.UUtils.Editor
         //[MenuItem("开发库/PS/UUtils/生成新项目框架代码")]
         public static void OnClickNewProjectFileButton()
         {
+            if (!File.Exists(CommonVariable.ClientInfoFile))
+            {
+                if (EditorUtility.DisplayDialog("配置新项目", "确定生成新项目[ " + projectName + " ]所需文件?", "是", "否"))
+                {
+                    AssemblyProject();
+                    AssetDatabase.Refresh();
+                }
+                return;
+            }
             ClientInfo _clientInfo = ClientInfo.Deserialize(CommonVariable.ClientInfoFile);
             if (projectName.Equals(_clientInfo.ProductName))
             {
