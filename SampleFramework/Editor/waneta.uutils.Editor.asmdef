@@ -1,0 +1,17 @@
+{
+    "name": "waneta.uutils.Editor",
+    "references": [
+        "GUID:eb0207d0f7f925d4287b09872bcf5cff"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
