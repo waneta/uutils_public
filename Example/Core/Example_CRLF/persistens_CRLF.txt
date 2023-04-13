@@ -1,0 +1,12 @@
+\NGA\ActionData\2017-07-25 14-50-22-PM_1_fc010570-41cc-431f-b9f7-2bda3b39e0c8_hunter1748@aol.com\swingMapping.ts
+\NGA\ActionData\2017-07-25 14-50-22-PM_1_fc010570-41cc-431f-b9f7-2bda3b39e0c8_hunter1748@aol.com\Comment\36385cbe-ac7a-4e68-b4ac-865b8203e200.ts
+\NGA\ActionData\2017-07-25 14-50-22-PM_1_fc010570-41cc-431f-b9f7-2bda3b39e0c8_hunter1748@aol.com\RadarData\36385cbe-ac7a-4e68-b4ac-865b8203e200.ts
+\NGA\ActionData\2017-07-25 14-50-22-PM_1_fc010570-41cc-431f-b9f7-2bda3b39e0c8_hunter1748@aol.com\RadarData\36385cbe-ac7a-4e68-b4ac-865b8203e200_Raw.ts
+\NGA\ActionData\2017-07-25 14-50-22-PM_1_fc010570-41cc-431f-b9f7-2bda3b39e0c8_hunter1748@aol.com\SnapShot\0953ecef-1527-4e8a-9ef8-5c8ce0079344.ts
+\NGA\ActionData\2017-07-25 14-50-22-PM_1_fc010570-41cc-431f-b9f7-2bda3b39e0c8_hunter1748@aol.com\SwingData\fc010570-41cc-431f-b9f7-2bda3b39e0c8.hs
+\NGA\ActionData\2017-09-13 09-40-23-AM_1_a8aa761b-1cbe-456d-981c-a0ab9427b6b6_trey@demo.com\swingMapping.ts
+\NGA\ActionData\2017-09-13 09-40-23-AM_1_a8aa761b-1cbe-456d-981c-a0ab9427b6b6_trey@demo.com\Comment\fffa6ef8-cd44-4657-b560-3a00dc6494fb.ts
+\NGA\ActionData\2017-09-13 09-40-23-AM_1_a8aa761b-1cbe-456d-981c-a0ab9427b6b6_trey@demo.com\RadarData\fffa6ef8-cd44-4657-b560-3a00dc6494fb.ts
+\NGA\ActionData\2017-09-13 09-40-23-AM_1_a8aa761b-1cbe-456d-981c-a0ab9427b6b6_trey@demo.com\RadarData\fffa6ef8-cd44-4657-b560-3a00dc6494fb_Raw.ts
+\NGA\ActionData\2017-09-13 09-40-23-AM_1_a8aa761b-1cbe-456d-981c-a0ab9427b6b6_trey@demo.com\SnapShot\b6250608-6a94-4a7b-bade-d2262f5f5502.ts
+\NGA\ActionData\2017-09-13 09-40-23-AM_1_a8aa761b-1cbe-456d-981c-a0ab9427b6b6_trey@demo.com\SwingData\a8aa761b-1cbe-456d-981c-a0ab9427b6b6.hs

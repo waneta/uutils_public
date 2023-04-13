@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ExWindowConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Nodes>
+    <ExWindowNode>
+      <note>主要界面</note>
+      <type>Main Window</type>
+    </ExWindowNode>
+    <ExWindowNode>
+      <note>配置界面</note>
+      <type>Config Window</type>
+    </ExWindowNode>
+  </Nodes>
+</ExWindowConfig>
