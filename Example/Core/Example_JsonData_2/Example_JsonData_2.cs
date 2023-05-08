@@ -1,4 +1,4 @@
-﻿/*
+/*
  *	MiniJSON 基本使用2
  */
 using System.IO;
@@ -64,7 +64,7 @@ namespace Client.UUtils.Example
             }
 			if(GUILayout.Button("读取json文件")){
 				Ex1_UserInfo usersData = ReadUsersData();
-				Debug.LogError ("usersData.CurrentUserID: "+usersData.userid);
+				Debug.LogError ("userid: " + usersData.userid+"head:"+ usersData.head);
 			}
 
 			if(GUILayout.Button("异步读取json")){
@@ -209,7 +209,7 @@ namespace Client.UUtils.Example
 
 
 		/*
-		#region save swingMapping
+		#region save Mapping
 		public HitConfigData ReadHitHistoryConfig(string dirname)
 		{
 			JObject json_data = null;
@@ -369,7 +369,7 @@ namespace Client.UUtils.Example
 		#endregion
 
 		#region SwingClub Data
-		//one swingclub data
+		//one club data
 		public SwingClubData ReadSwingClubData(HitConfigData configData)
 		{
 			JObject json_data = null;
@@ -481,55 +481,55 @@ namespace Client.UUtils.Example
 		}
 
 		/// <summary>
-		/// 异步保存swing数据文件
+		/// 异步保存数据文件
 		/// </summary>
 		public HitConfigData AsyncSaveSwingClubData(List<HitData> hitBufferDatas, Dictionary<HitState, int> hitStates, UserInfo userInfo, string title, string desc, string max_club_angle_speed, string max_thorax_turn_angle, string max_club_head_speed, FileWriteTaskEventHandler handler)
 		{
 			string fileName;
 
-			//创建swing数据文件对象
-			SwingClubData _swingClubData = new SwingClubData();
+			//创建m数据文件对象
+			SwingClubData _mClubData = new SwingClubData();
 
 			//保存hitdata数据
-			_swingClubData.hitData = hitBufferDatas;
+			_mClubData.hitData = hitBufferDatas;
 
 			//保存peaks数据
-			_swingClubData.peakData.Clear();
+			_mClubData.peakData.Clear();
 			for (int s = 0; s < Enum.GetValues(typeof(HitState)).Length; s++)
 			{
 				if (hitStates.ContainsKey((HitState)s))
 				{
-					_swingClubData.peakData.Add(hitStates[(HitState)s]);
+					_mClubData.peakData.Add(hitStates[(HitState)s]);
 				}
 				else
 				{
-					_swingClubData.peakData.Add(-1);
+					_mClubData.peakData.Add(-1);
 				}
 			}
 
 			//保存用户信息
 			UserInfo _cloneUser = FileSave.Copy<UserInfo>(userInfo);//深度复制，该方法未经过测试，录制数据时进行测试。
 			_cloneUser.bagInfo.DeleteUnengagedClubs();
-			_swingClubData.userInfo = _cloneUser;
+			_mClubData.userInfo = _cloneUser;
 
 			//创建hitconfigdata
 			HitConfigData _hitConfigData = new HitConfigData();
 			_hitConfigData.currentSwingType =UI.Pad.OpenDataType.Swing;
 			_hitConfigData.time = DateTime.Now;
-			_hitConfigData.swingDataCreateTime = Utils.DateTimeToUnixTimestamp(_hitConfigData.time.ToUniversalTime()); //新加字段，记录Java格式是标准时间戳，仅用于网络同步
+			_hitConfigData.mDataCreateTime = Utils.DateTimeToUnixTimestamp(_hitConfigData.time.ToUniversalTime()); //新加字段，记录Java格式是标准时间戳，仅用于网络同步
 			_hitConfigData.userInfo = _cloneUser;
 
-			//保存swingData 数据时，防止出现coachID 为空的现象，进行再次
+			//保存mData 数据时，防止出现coachID 为空的现象，进行再次
 			if (string.IsNullOrEmpty(_hitConfigData.userInfo.userBaseInfo.coachID)) {
 				_hitConfigData.userInfo.userBaseInfo.coachID = DataManager.Instance.CurrentUser.userBaseInfo.email;
 			}
 			_hitConfigData.time_zone = (float)System.TimeZone.CurrentTimeZone.GetUtcOffset(System.DateTime.Now).TotalMinutes/ 60 ;
 			//SwingData 描述
-			_hitConfigData.swingDescTitle = title;
-			_hitConfigData.swingDesc = desc;
+			_hitConfigData.mDescTitle = title;
+			_hitConfigData.mDesc = desc;
 
-			//保存swing数据version；
-			_hitConfigData.swingVersion = _swingClubData.syncVersion;
+			//保存m数据version；
+			_hitConfigData.mVersion = _mClubData.syncVersion;
 
 			//保存当前使用的雷达类型， ///-----------------
 			if (RadarMonitor.Instance.radarRealData != null&&RadarMonitor.Instance.isGetRealData)
@@ -538,29 +538,29 @@ namespace Client.UUtils.Example
 			}
 
 
-			//异步保存swing数据文件；
+			//异步保存m数据文件；
 			fileName = _hitConfigData.GetEncryptSwingDataFileName();
-			FileManager.Instance.AsyncWriteEncryptZipJsonObject(fileName, _swingClubData.Serialize(ClientConfig.DataVersionCode), handler);
+			FileManager.Instance.AsyncWriteEncryptZipJsonObject(fileName, _mClubData.Serialize(ClientConfig.DataVersionCode), handler);
 
 			//[{"name":"angle_speed", "value":"180" ,"unit":"deg/s" },{"name":"turn_angle", "value":"50" ,"unit":"°" },{"name":"speed", "value":"1190" ,"unit":"" }]
 			//Swing 评级指标
-			SwingGrade _swingGrade = new SwingGrade();
-			SwingGradeObject _swingGradeObject = new SwingGradeObject("angle_speed", max_club_angle_speed, "deg/s");
-			_swingGrade.gradeList.Add(_swingGradeObject);
-			SwingGradeObject _swingGradeObject1 = new SwingGradeObject("turn_angle", max_thorax_turn_angle, "deg");
-			_swingGrade.gradeList.Add(_swingGradeObject1);
-			SwingGradeObject _swingGradeObject2 = new SwingGradeObject("speed", max_club_head_speed, "km/hr");
-			_swingGrade.gradeList.Add(_swingGradeObject2);
+			SwingGrade _mGrade = new SwingGrade();
+			SwingGradeObject _mGradeObject = new SwingGradeObject("angle_speed", max_club_angle_speed, "deg/s");
+			_mGrade.gradeList.Add(_mGradeObject);
+			SwingGradeObject _mGradeObject1 = new SwingGradeObject("turn_angle", max_thorax_turn_angle, "deg");
+			_mGrade.gradeList.Add(_mGradeObject1);
+			SwingGradeObject _mGradeObject2 = new SwingGradeObject("speed", max_club_head_speed, "km/hr");
+			_mGrade.gradeList.Add(_mGradeObject2);
 
-			_hitConfigData.swingGrade = _swingGrade;
+			_hitConfigData.mGrade = _mGrade;
 
 			//默认无需生成新的SwingComment,第一次使用时，创建
-			SwingComment _swingComment = new SwingComment();
-			_hitConfigData.swingCommentVersion = _swingComment.syncVersion;
+			SwingComment _mComment = new SwingComment();
+			_hitConfigData.mCommentVersion = _mComment.syncVersion;
 
 			//异步保存标注文件
 			fileName = _hitConfigData.GetEncryptCommentFileName();
-			FileManager.Instance.AsyncWriteEncryptZipJsonObject(fileName, _swingComment.Serialize(ClientConfig.DataVersionCode), handler);
+			FileManager.Instance.AsyncWriteEncryptZipJsonObject(fileName, _mComment.Serialize(ClientConfig.DataVersionCode), handler);
 
 			//大图快照内容
 			SnapShotData _snapShotData = new SnapShotData();
@@ -572,7 +572,7 @@ namespace Client.UUtils.Example
 			fileName = _hitConfigData.GetEncryptSnapshotFileName();
 			FileManager.Instance.AsyncWriteEncryptZipJsonObject(fileName, _snapShotData.Serialize(ClientConfig.DataVersionCode), handler);
 
-			//异步保存swing的综述文件
+			//异步保存m的综述文件
 			fileName = _hitConfigData.getEncryptSwingMappingFileName();
 			FileManager.Instance.AsyncWriteEncryptZipJsonObject(fileName, _hitConfigData.Serialize(ClientConfig.DataVersionCode), handler);
 
@@ -602,7 +602,7 @@ namespace Client.UUtils.Example
 						{
 							JObject jdata = data as JObject;
 							int vercode = JsonHelper.GetInteger(jdata, ClientConfig.KEY_DATA_VERSION_CODE);
-							SwingClubData swingClubData = new SwingClubData(jdata, vercode);
+							SwingClubData mClubData = new SwingClubData(jdata, vercode);
 
 							//对旧数据整体迁移加密之后回存；
 							if (vercode != ClientConfig.DataVersionCode)
@@ -617,7 +617,7 @@ namespace Client.UUtils.Example
 								fname = currentPeolpe.CurrentHitConfigData.GetEncryptSwingDataFileName();
 
 
-								FileManager.Instance.AsyncWriteEncryptZipJsonObject(fname, swingClubData.Serialize(ClientConfig.DataVersionCode), null);
+								FileManager.Instance.AsyncWriteEncryptZipJsonObject(fname, mClubData.Serialize(ClientConfig.DataVersionCode), null);
 							}
 
 							ApplicationUI.Instance.closeWindowObject(WINDOWOBJECT_TYPE.PROGRESSWINDOW, SHOW_EFFECT.NONE, true);
@@ -626,7 +626,7 @@ namespace Client.UUtils.Example
 							{
 								try
 								{
-									swingClubData.AdjustImpactHandData();
+									mClubData.AdjustImpactHandData();
 								}
 								catch (System.Exception e1)
 								{
@@ -634,23 +634,23 @@ namespace Client.UUtils.Example
 
 							}
 							//将hitdata数据下标映射成index和time
-							for (int s = 0; s < swingClubData.hitData.Count; s++)
+							for (int s = 0; s < mClubData.hitData.Count; s++)
 							{
-								swingClubData.hitData[s].totalIndex = s;
-								swingClubData.hitData[s].time = s * 1.0f / (Base.It.ConfigData.BaseFrameCountPerSecond * Base.It.ConfigData.insertFrameCount);
+								mClubData.hitData[s].totalIndex = s;
+								mClubData.hitData[s].time = s * 1.0f / (Base.It.ConfigData.BaseFrameCountPerSecond * Base.It.ConfigData.insertFrameCount);
 							}
-							//foreach (var hd in swingClubData.hitData)
+							//foreach (var hd in mClubData.hitData)
 							//{
 							//    Debug.LogErrorFormat("{0},{1},{2}"
 							//        , hd.skeletonsData[(int)SkeletonType.Club].rotation.x
 							//        , hd.skeletonsData[(int)SkeletonType.Club].rotation.y
 							//        , hd.skeletonsData[(int)SkeletonType.Club].rotation.z);
 							//}
-							PlaySwingClubData(swingClubData);
+							PlaySwingClubData(mClubData);
 							currentPeolpe.PlayerTimePoint = PlayTimePoint.LoadDataSuccess;
 							MainUIContext.Instance.LastOpenHitConfigData = currentPeolpe.CurrentHitConfigData;
 							//*_*在review，compare 界面，当读取一个新的数据时，需要根据当前播放数据中左右手握杆方式，进行相应的调整
-							SettingControlProcess.Instance.RefreshSettingOptionByHistoryData(swingClubData.userInfo);
+							SettingControlProcess.Instance.RefreshSettingOptionByHistoryData(mClubData.userInfo);
 							//if (isSaveAndReview) //如果是从save and Review 跳转的，直接播放
 							//{
 							//    PeopleMag.CurrentPeolpe.SetHeadTransparentCube();

@@ -106,13 +106,13 @@ namespace SampleFramework.UUtils.Example
         public string userName="";
         public string passWord="";
 
-        //20160912新增字段，Bioswing 选项，
-        public bool isUseBioswing = false;//仅对教练有意义
+        //20160912新增字段，Biom 选项，
+        public bool isUseBiom = false;//仅对教练有意义
         public int PelvicPivotAxisEnum = 0;
         public int TrailArmActionEnum = 0;
         public int PosturalReleaseEnum = 0;
         public int LeverDeliveryActionEnum = 0;
-        public int DownswingPlaneEnum = 0;
+        public int DownmPlaneEnum = 0;
         public int HipDifferentialEnum = 0;
 
 
@@ -306,13 +306,13 @@ namespace SampleFramework.UUtils.Example
             JsonHelper.SetInteger(json, "userWeightEnum", userWeightEnum);
             JsonHelper.SetInteger(json, "userHDCPEnum", userHDCPEnum);
 
-            JsonHelper.SetBoolean(json, "isUseBioswing", isUseBioswing);
+            JsonHelper.SetBoolean(json, "isUseBiom", isUseBiom);
 
             JsonHelper.SetInteger(json, "TrailArmActionEnum", TrailArmActionEnum);
             JsonHelper.SetInteger(json, "PelvicPivotAxisEnum", PelvicPivotAxisEnum);
             JsonHelper.SetInteger(json, "PosturalReleaseEnum", PosturalReleaseEnum);
             JsonHelper.SetInteger(json, "LeverDeliveryActionEnum", LeverDeliveryActionEnum);
-            JsonHelper.SetInteger(json, "DownswingPlaneEnum", DownswingPlaneEnum);
+            JsonHelper.SetInteger(json, "DownmPlaneEnum", DownmPlaneEnum);
             JsonHelper.SetInteger(json, "HipDifferentialEnum", HipDifferentialEnum);
 
 			return json;
@@ -377,12 +377,12 @@ namespace SampleFramework.UUtils.Example
            userHDCPEnum = JsonHelper.GetInteger(json, "userHDCPEnum");
 
             //20160912
-            isUseBioswing = JsonHelper.GetBoolean(json, "isUseBioswing");
+            isUseBiom = JsonHelper.GetBoolean(json, "isUseBiom");
             PelvicPivotAxisEnum = JsonHelper.GetInteger(json, "PelvicPivotAxisEnum");
             TrailArmActionEnum = JsonHelper.GetInteger(json, "TrailArmActionEnum");
             PosturalReleaseEnum = JsonHelper.GetInteger(json, "PosturalReleaseEnum");
             LeverDeliveryActionEnum = JsonHelper.GetInteger(json, "LeverDeliveryActionEnum");
-            DownswingPlaneEnum = JsonHelper.GetInteger(json, "DownswingPlaneEnum");
+            DownmPlaneEnum = JsonHelper.GetInteger(json, "DownmPlaneEnum");
             HipDifferentialEnum = JsonHelper.GetInteger(json, "HipDifferentialEnum");
 		}
 
